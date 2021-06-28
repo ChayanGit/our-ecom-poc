@@ -2,7 +2,7 @@ FROM node:12.16.3-alpine as build
 
 WORKDIR /INFO-DIRECTORY
 
-COPY package*.json .
+COPY package.json ./
 RUN npm install
 COPY . ./
 RUN yarn install
