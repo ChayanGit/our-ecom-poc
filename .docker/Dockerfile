@@ -1,6 +1,6 @@
 # build environment
 FROM node:8-alpine as react-build
-WORKDIR /app
+WORKDIR /INFO-DIRECTORY
 COPY . ./
 RUN yarn
 RUN yarn build
