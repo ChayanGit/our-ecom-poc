@@ -1,9 +1,8 @@
 # build environment
 FROM node:8-alpine as react-build
-WORKDIR /INFO-DIRECTORY
+WORKDIR /app
 COPY . ./
-RUN yarn
-RUN yarn build
+CMD ["node", "src/index.js"]
 
 # server environment
 FROM nginx:alpine
