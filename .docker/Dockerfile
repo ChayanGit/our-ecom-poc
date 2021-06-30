@@ -8,7 +8,7 @@
 
  FROM nginx
 
-COPY .docker/container /
+COPY .docker/container /.
 COPY build /usr/share/nginx/html
 
  #CMD ["node", "src/index.js"]
