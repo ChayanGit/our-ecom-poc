@@ -76,12 +76,8 @@ jobs:
         working-directory: .docker
 
       # Deploy image to Cloud Run
-      - spec:
-        containers:
-            - image: gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
-          ports:
-              - containerPort: 8080
       - name: Deploy GCR
+        ports: 8080:8080
         run: |-
           gcloud run deploy "$SERVICE_NAME" \
             --quiet \
