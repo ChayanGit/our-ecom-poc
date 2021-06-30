@@ -77,7 +77,8 @@ jobs:
 
       # Deploy image to Cloud Run
       - name: Deploy GCR
-      
+        container:
+          ports: 8080 
         run: |-
           gcloud run deploy "$SERVICE_NAME" \
             --quiet \
