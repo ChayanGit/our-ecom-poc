@@ -9,7 +9,7 @@ env:
   PROJECT_ID: ${{ secrets.GCR_PROJECT }}
   RUN_REGION: us-central1
   SERVICE_NAME: ecom-demo
-  PORT: 8080
+  
 
 jobs:
   
@@ -51,6 +51,7 @@ jobs:
     name: Deploy to GCR
     needs: build
     runs-on: ubuntu-latest
+    
 
     steps:
       - name: Checkout Repo
@@ -79,7 +80,8 @@ jobs:
 
       # Deploy image to Cloud Run
       - name: Deploy GCR
-        
+        ports:
+        - 8080
         run: |-
           gcloud run deploy "$SERVICE_NAME" \
             --quiet \
