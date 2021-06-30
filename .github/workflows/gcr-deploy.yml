@@ -9,10 +9,10 @@ env:
   PROJECT_ID: ${{ secrets.GCR_PROJECT }}
   RUN_REGION: us-central1
   SERVICE_NAME: ecom-demo
+  PORT: 8080
 
 jobs:
-  container:
-          ports: 8080 
+  
   build:
     name: Build React App
     runs-on: ubuntu-latest
