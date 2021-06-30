@@ -8,7 +8,6 @@
 
 FROM nginx
 
-EXPOSE 80
 COPY container/etc/nginx /
 COPY build /usr/share/nginx/html
 EXPOSE 443
