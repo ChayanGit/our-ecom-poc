@@ -10,7 +10,7 @@ FROM nginx
 
 COPY container/etc/nginx /
 COPY build /usr/share/nginx/html
-EXPOSE 443
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 
  #CMD ["node", "src/index.js"]
