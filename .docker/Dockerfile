@@ -12,7 +12,8 @@ COPY container/etc/nginx /
 COPY build /usr/share/nginx/html
 EXPOSE 8080
 ENV PORT 8080
-CMD ["nginx", "-g", "daemon off;"]
+ENV HOST 0.0.0.0
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
  #CMD ["node", "src/index.js"]
  # build environment
