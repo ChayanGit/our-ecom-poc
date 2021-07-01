@@ -12,7 +12,7 @@
 FROM nginx:alpine
 
 # Copy our nginx configuration
-COPY container/etc/nginx/nginx.conf /etc/nginx/conf.d/configfile.template
+COPY container/etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Set working directory to nginx asset directory
 WORKDIR /usr/share/nginx/html
