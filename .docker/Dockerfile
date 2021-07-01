@@ -11,9 +11,8 @@
 
 FROM nginx
 
-COPY container/etc/nginx /etc/nginx/conf.d/configfile.template
+COPY container/etc/nginx/nginx.conf /etc/nginx/conf
 COPY build /usr/share/nginx/html
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
  #CMD ["node", "src/index.js"]
  # build environment
