@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy our node module specification
 COPY package.json package.json
-COPY yarn.lock yarn.lock
+#COPY yarn.lock yarn.lock
 
 # install node modules and build assets
 RUN yarn install --production
@@ -22,7 +22,7 @@ RUN yarn build
 FROM nginx:alpine
 
 # Copy our nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/configfile.template
+COPY container/etc/nginx/nginx.conf /etc/nginx/conf.d/configfile.template
 
 # Set working directory to nginx asset directory
 WORKDIR /usr/share/nginx/html
