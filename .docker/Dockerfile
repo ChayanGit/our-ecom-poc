@@ -1,8 +1,12 @@
 
  FROM node:15.4 as reactapp
  WORKDIR /app
- COPY . .
- RUN npm install
- EXPOSE 8080
  ENV PORT 8080
- ENV HOST 0.0.0.0
+ COPY package.json /app/package.json
+ RUN npm install
+
+COPY . /app
+ 
+CMD [ "node","src/index.js" ]
+ 
+
