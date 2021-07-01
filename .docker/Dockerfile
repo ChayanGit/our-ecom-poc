@@ -24,7 +24,7 @@ RUN rm -rf *
 COPY --from=reactapp /app/build .
 
 # Define environment variables for Cloud Run
-ENV PORT 8080
+ENV PORT '\$PORT'
 ENV HOST 0.0.0.0
 EXPOSE 8080
 
