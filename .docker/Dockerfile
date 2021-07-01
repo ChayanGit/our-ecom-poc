@@ -11,7 +11,7 @@
 
 FROM nginx
 
-COPY container/etc/nginx /
+COPY container/etc/nginx /etc/nginx/conf.d/configfile.template
 COPY build /usr/share/nginx/html
 CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
