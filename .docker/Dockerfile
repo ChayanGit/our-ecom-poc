@@ -1,57 +1,42 @@
+# Name the node stage "builder"
+FROM node:15-alpine AS builder
 
- FROM node:15.4 as reactapp
- WORKDIR /app
- COPY . .
- RUN npm install
- EXPOSE 8080
- ENV PORT 8080
- ENV HOST 0.0.0.0
- #RUN yarn install --production
+# Set working directory
+WORKDIR /app
 
+# Copy our node module specification
+COPY package.json package.json
+COPY yarn.lock yarn.lock
 
-FROM nginx
+# install node modules and build assets
+RUN yarn install --production
 
-COPY container/etc/nginx/nginx.conf /etc/nginx/conf
-COPY build /usr/share/nginx/html
+# Copy all files from current directory to working dir in image
+# Except the one defined in '.dockerignore'
+COPY . .
 
- #CMD ["node", "src/index.js"]
- # build environment
-# FROM node:14 as reactapp
+# Create production build of React App
+RUN yarn build
 
-# # Create app directory
-# WORKDIR /src
-# COPY package*.json /src/
-# RUN npm install
+# Choose NGINX as our base Docker image
+FROM nginx:alpine
 
-# RUN npm build
+# Copy our nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/configfile.template
 
-# # If you are building your code for production
-# # RUN npm ci --only=production
+# Set working directory to nginx asset directory
+WORKDIR /usr/share/nginx/html
 
+# Remove default nginx static assets
+RUN rm -rf *
 
-# # Install app dependencies
-# # A wildcard is used to ensure both package.json AND package-lock.json are copied
-# # where available (npm@5+)
+# Copy static assets from builder stage
+COPY --from=builder /app/build .
 
-# COPY . .
+# Define environment variables for Cloud Run
+ENV PORT 8080
+ENV HOST 0.0.0.0
+EXPOSE 8080
 
-
-
-
-
-
-
-
-# # server environment
-# FROM fholzer/nginx-brotli:v1.12.2
-# COPY nginx.conf /etc/nginx/conf.d/configfile.template
-
-# #COPY --from=reactapp /src/build /usr/share/nginx/html
-
-# ENV PORT 8080
-# ENV HOST 0.0.0.0
-# EXPOSE 8080
-# CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
-
-#docker build -t gcr.io/our-ecom-app/locltest -f Dockerfile .
-
+# Substitute $PORT variable in config file with the one passed via "docker run"
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
