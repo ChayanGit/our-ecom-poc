@@ -12,7 +12,6 @@ Node version:
 
 Platform: 
   darwin x64
-
 Trace: 
   Error: https://registry.yarnpkg.com/Bu: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
