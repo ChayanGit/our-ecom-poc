@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@main
         with:
           name: build
-          path: /build
+          path: .docker/build
 
       - name: Setup gcloud CLI
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -75,7 +75,7 @@ jobs:
           gcloud builds submit \
             --quiet \
             --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
-        working-directory: /
+        working-directory: .docker
 
       # Deploy image to Cloud Run
       - name: Deploy GCR
@@ -87,6 +87,3 @@ jobs:
             --platform "managed" \
             --allow-unauthenticated \
             --port 80
-
-            
-           

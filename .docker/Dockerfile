@@ -4,6 +4,7 @@
  COPY . /app
  #RUN npm install
  RUN yarn install --production
+ RUN yarn build
 
 
 FROM nginx
