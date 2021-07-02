@@ -6,7 +6,9 @@
  #RUN yarn install --production
 
 
- FROM nginx
+FROM nginx
+
+ENV PORT = 80
 
 COPY nginx.conf /etc/nginx/conf.d/configfile.template
 COPY build /usr/share/nginx/html
