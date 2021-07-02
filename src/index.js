@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const express = require('express');
+const app = express();
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`ecomapp: listening on port ${port}`);
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -15,3 +23,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
