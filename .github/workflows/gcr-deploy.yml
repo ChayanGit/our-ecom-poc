@@ -73,8 +73,7 @@ jobs:
       - name: Build & Push
         run: |-
           gcloud builds submit \
-            --quiet \
-            --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
+            --quiet 
         working-directory: .docker
 
       # Deploy image to Cloud Run
@@ -86,6 +85,7 @@ jobs:
             --image "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA" \
             --platform "managed" \
             --allow-unauthenticated \
-            --tag latest \
-            --port 80 
+            --port 80
+
+
            
