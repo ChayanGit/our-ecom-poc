@@ -18,7 +18,7 @@ function App() {
         >
           Learn React
         </a> */}
-        Info Directory reloaded
+        Info D
       </header>
 
       
