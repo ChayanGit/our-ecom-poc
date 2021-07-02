@@ -8,5 +8,5 @@
 
  FROM nginx
 
-COPY .docker/container/etc/nginx/nginx.conf /
+COPY nginx.conf /etc/nginx/conf.d/configfile.template
 COPY build /usr/share/nginx/html
