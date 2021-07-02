@@ -78,7 +78,7 @@ jobs:
         working-directory: .docker
 
       # Deploy image to Cloud Run
-        spec:
+       - spec:
           containers:
             ports:
               - containerPort: 80
