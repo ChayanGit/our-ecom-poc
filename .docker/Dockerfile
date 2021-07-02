@@ -8,5 +8,5 @@
 
  FROM nginx
 
-COPY .docker/container /
+COPY .docker/container/etc/nginx /
 COPY build /usr/share/nginx/html
