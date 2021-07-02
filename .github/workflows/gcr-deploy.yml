@@ -72,7 +72,9 @@ jobs:
       # Build and push image to Google Container Registry
       - name: Build & Push
         run: |-
-          gcloud builds submit --quiet 
+          gcloud builds submit \
+            --quiet \
+            --tag ""
         working-directory: .docker
 
       # Deploy image to Cloud Run
@@ -86,5 +88,5 @@ jobs:
             --allow-unauthenticated \
             --port 80
 
-
+            
            
