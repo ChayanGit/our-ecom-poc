@@ -38,7 +38,7 @@ jobs:
         
 
       - name: Build Development
-        run: yarn build
+        run: npm run build
 
       - name: Archive Production Artifact
         uses: actions/upload-artifact@main
