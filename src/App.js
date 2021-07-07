@@ -18,7 +18,7 @@ function App() {
         >
           Learn React
         </a> */}
-        Info Dopkkkklklkl
+        Implemented CI-CD with Google Cloud is Done.
       </header>
 
       
