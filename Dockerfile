@@ -2,9 +2,8 @@
  FROM node:15.4 as reactapp
  WORKDIR /app
  COPY . /app
- #RUN yarn build
- RUN npm run build
  RUN yarn install --production
+ RUN yarn build
  
 
 
