@@ -18,7 +18,7 @@ function App() {
         >
           Learn React
         </a> */}
-        Info Dopkkk
+        Info Dopkkkklklkl
       </header>
 
       
